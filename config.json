@@ -1,47 +1,21 @@
 {
   "input": [
     {
-      "type": "maxmindGeoLite2CountryCSV",
+      "type": "text",
       "action": "add",
       "args": {
-        "country": "./geolite2/GeoLite2-Country-Locations-en.csv",
-        "ipv4": "./geolite2/GeoLite2-Country-Blocks-IPv4.csv",
-        "ipv6": "./geolite2/GeoLite2-Country-Blocks-IPv6.csv"
-      }
-    },
-    {
-      "type": "cutter",
-      "action": "remove",
-      "args": {
-        "wantedList": ["cn"],
-        "onlyIPType": "ipv4"
+        "name": "cn",
+        "uri": "https://github.com/pmkol/easymosdns/raw/rules/china_ip_list.txt",
+        "wantedList": ["cn"]
       }
     },
     {
       "type": "text",
       "action": "add",
       "args": {
-        "name": "cn",
-        "uri": "https://raw.githubusercontent.com/17mon/china_ip_list/master/china_ip_list.txt",
-        "onlyIPType": "ipv4"
-      }
-    },
-    {
-      "type": "text",
-      "action": "add",
-      "args": {
-        "name": "cn",
-        "uri": "https://raw.githubusercontent.com/gaoyifan/china-operator-ip/ip-lists/china.txt",
-        "onlyIPType": "ipv4"
-      }
-    },
-    {
-      "type": "text",
-      "action": "add",
-      "args": {
-        "name": "cn",
-        "uri": "https://raw.githubusercontent.com/gaoyifan/china-operator-ip/ip-lists/china6.txt",
-        "onlyIPType": "ipv6"
+        "name": "private",
+        "uri": "https://github.com/Loyalsoldier/geoip/raw/release/text/private.txt",
+        "wantedList": ["private"]
       }
     },
     {
@@ -49,15 +23,26 @@
       "action": "add",
       "args": {
         "name": "cloudflare",
-        "uri": "https://www.cloudflare.com/ips-v4"
+        "uri": "https://github.com/Loyalsoldier/geoip/raw/release/text/cloudflare.txt",
+        "wantedList": ["cloudflare"]
       }
     },
     {
       "type": "text",
       "action": "add",
       "args": {
-        "name": "cloudflare",
-        "uri": "https://www.cloudflare.com/ips-v6"
+        "name": "google",
+        "uri": "https://github.com/Loyalsoldier/geoip/raw/release/text/google.txt",
+        "wantedList": ["google"]
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "netflix",
+        "uri": "https://github.com/Loyalsoldier/geoip/raw/release/text/netflix.txt",
+        "wantedList": ["netflix"]
       }
     },
     {
@@ -65,7 +50,16 @@
       "action": "add",
       "args": {
         "name": "telegram",
-        "uri": "https://core.telegram.org/resources/cidr.txt"
+        "uri": "https://github.com/Loyalsoldier/geoip/raw/release/text/telegram.txt",
+        "wantedList": ["telegram"]
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "gfw",
+        "uri": "https://gitlab.com/perish1024/domains_collections/-/raw/main/gfw_ip.txt"
       }
     },
     {
@@ -74,10 +68,6 @@
       "args": {
         "inputDir": "./data"
       }
-    },
-    {
-      "type": "private",
-      "action": "add"
     }
   ],
   "output": [
@@ -85,84 +75,14 @@
       "type": "v2rayGeoIPDat",
       "action": "output",
       "args": {
-        "outputName": "geoip.dat"
-      }
-    },
-    {
-      "type": "v2rayGeoIPDat",
-      "action": "output",
-      "args": {
-        "outputName": "geoip-only-cn-private.dat",
-        "wantedList": ["cn", "private"]
-      }
-    },
-    {
-      "type": "v2rayGeoIPDat",
-      "action": "output",
-      "args": {
-        "outputName": "geoip-asn.dat",
-        "wantedList": [
-          "cloudflare",
-          "cloudfront",
-          "facebook",
-          "fastly",
-          "google",
-          "netflix",
-          "telegram",
-          "twitter"
-        ]
-      }
-    },
-    {
-      "type": "v2rayGeoIPDat",
-      "action": "output",
-      "args": {
-        "oneFilePerList": true,
-        "wantedList": ["cn", "private"]
+        "outputName": "geoip-lite.dat"
       }
     },
     {
       "type": "maxmindMMDB",
       "action": "output",
       "args": {
-        "outputName": "Country.mmdb",
-        "overwriteList": [
-          "cn",
-          "private",
-          "cloudflare",
-          "cloudfront",
-          "facebook",
-          "fastly",
-          "google",
-          "netflix",
-          "telegram",
-          "twitter"
-        ]
-      }
-    },
-    {
-      "type": "maxmindMMDB",
-      "action": "output",
-      "args": {
-        "outputName": "Country-only-cn-private.mmdb",
-        "wantedList": ["cn", "private"]
-      }
-    },
-    {
-      "type": "maxmindMMDB",
-      "action": "output",
-      "args": {
-        "outputName": "Country-asn.mmdb",
-        "wantedList": [
-          "cloudflare",
-          "cloudfront",
-          "facebook",
-          "fastly",
-          "google",
-          "netflix",
-          "telegram",
-          "twitter"
-        ]
+        "outputName": "country-lite.mmdb"
       }
     },
     {
