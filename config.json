@@ -49,6 +49,15 @@
       "type": "text",
       "action": "add",
       "args": {
+        "name": "fastly",
+        "uri": "https://github.com/Loyalsoldier/geoip/raw/release/text/fastly.txt",
+        "wantedList": ["fastly"]
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
         "name": "telegram",
         "uri": "https://github.com/Loyalsoldier/geoip/raw/release/text/telegram.txt",
         "wantedList": ["telegram"]
